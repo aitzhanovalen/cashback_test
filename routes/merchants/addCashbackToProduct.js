@@ -3,6 +3,8 @@ const router = express.Router();
 const MerchantModel = require("../../models/merchant");
 const {addPriceToProduct} = require('../../controllers/product')
 
+//TODO kek
+
 //При установке продавцом размера кэшбека, добавит данный кэшбек на товар
 router.post("/", async(req, res) => {
     const {p_id,m_id,price,cashback_percent} = req.body

@@ -20,7 +20,7 @@ async function getProducts(){
     products.map(function(product, i) {
         var merged = product.prices.map(function(value, index) {
             var newValue = value;
-            newValue.name = product.merchants[index].name
+            newValue.merchant_name = product.merchants[index].name
             return newValue;
           }); 
     
