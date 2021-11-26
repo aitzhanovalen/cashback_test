@@ -1,22 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const MerchantModel = require("../../models/merchant");
-const {addPriceToProduct} = require('../../controllers/product')
+const {changeCashback} = require('../../controllers/product')
 
 //TODO kek
 
 //При установке продавцом размера кэшбека, добавит данный кэшбек на товар
 router.post("/", async(req, res) => {
-    const {p_id,m_id,price,cashback_percent} = req.body
+    const {p_id,m_id,cashback_percent} = req.body
 
     //simple validation
-    if(price<0){
-        return res.status(400).send({
-            status:400,
-            message:'Invalid price'
-        })
-        
-    }
     if(cashback_percent<0){
         return res.status(400).send({
             status:400,
@@ -41,11 +34,12 @@ router.post("/", async(req, res) => {
         })
     }
 
-    //adding price and cashback to product
-    addPriceToProduct(p_id,merchant._id,price,cashback_percent)
+    //changing cashback to product
+    console.log(merchant)
+    changeCashback(p_id,merchant._id,cashback_percent)
     res.status(200).send({
         status:'success',
-        message:'Price and cashback added'
+        message:'Cashback changed'
     })
 });
 

@@ -1,5 +1,5 @@
 const {createMerchant,addProductToMerchant} = require('../controllers/merchant')
-const {createProduct,addMerchantToProduct} = require('../controllers/product')
+const {createProduct,addMerchantToProduct,addPriceToProduct} = require('../controllers/product')
 
 async function fillDbProductsAndMerchants(){
     var m1 = await createMerchant({
@@ -129,7 +129,10 @@ async function fillDbProductsAndMerchants(){
 
     await addMerchantToProduct(prod5._id, m1);
     await addMerchantToProduct(prod2._id, m3);
-    console.log('end')
+    console.log('adding prices')
+
+    await addPriceToProduct(prod1._id,m1._id,10000,1)
+
 }
 
 module.exports = {fillDbProductsAndMerchants}
