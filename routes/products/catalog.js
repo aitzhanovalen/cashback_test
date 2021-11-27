@@ -17,17 +17,20 @@ router.get("/", async(req, res) => {
 
 
 async function getProducts(c_id){
+    //check if customer has a cashback
     const products = await ProductModel.find({}).populate("merchants",'name').lean()
     const cashback = await CashbackModel.findOne({customer_id:c_id})
     let merchant
     if(cashback){
         merchant = await MerchantModel.findOne({id:cashback.merchant_id})
     }
-    
+
+    //show products with cashbacks
     products.map(function(product, i) {
         var merged = product.prices.map(function(value, index) {
             var newValue = value;
             if(merchant && merchant._id.equals(product.merchants[index]._id)){
+                console.log(merchant)
                 newValue.cashback_percent = cashback.cashback_percent
                 newValue.cashback = newValue.price*cashback.cashback_percent*0.01
             }

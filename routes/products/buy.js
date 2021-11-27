@@ -29,7 +29,7 @@ router.post("/", async(req, res) => {
         })
     }
     //changing cashback to product
-    let result = await buyProduct({merchant_id:m_id,product_id:p_id,customer_id:customer._id,price:price,cashback_percent:cashback_percent,card_type:card_type})
+    let result = await buyProduct({m_id:m_id,p_id:p_id,c_id:c_id,price:price,cashback_percent:cashback_percent,card_type:card_type})
     res.status(200).send(result)
 });
 
