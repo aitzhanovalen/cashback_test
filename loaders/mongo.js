@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 require("../models/product");
 require("../models/merchant")
+require("../models/order")
 const Config = require('../config');
 
 console.log('DB: trying to connect to', Config.db)

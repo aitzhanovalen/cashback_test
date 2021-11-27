@@ -19,6 +19,9 @@ const MerchantSchema = new mongoose.Schema(
         ref: "product"
       }
     ],
+    cashback_percents:{
+      type: Object,
+    }
     
   },
   {
