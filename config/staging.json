@@ -1,5 +1,5 @@
 {
     "environment": "staging",
-    "db": "mongodb+srv://Nassiba:nasiba20@carfast-staging.4guh6.mongodb.net/сashback_hakaton?retryWrites=true&w=majority",
+    "db": "mongodb+srv://Nassiba:nasiba20@cluster0.uzs9h.gcp.mongodb.net/cashback_hakaton?retryWrites=true&w=majority",
     "mainServiceUrl":""
 }
