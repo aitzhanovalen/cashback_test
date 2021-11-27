@@ -10,10 +10,11 @@ router.get("/", async(req, res) => {
 
     for(let i = 0; i < orders.length; i++){
         const total_percent = orders[i].cashback_percent
+        let m_p = parseFloat(total_percent) - (parseFloat(merchant.bank_percent) +parseFloat(merchant.payment_system_percent))<0?0:parseFloat(total_percent) - (parseFloat(merchant.bank_percent) +parseFloat(merchant.payment_system_percent))
         let obj={
-            "bank":merchant.cashback_percents.bank,
-            "payment_system":merchant.cashback_percents.payment_system,
-            "merchant":parseFloat(total_percent) - (parseFloat(merchant.cashback_percents.bank) +parseFloat(merchant.cashback_percents.payment_system))
+            "bank":merchant.bank_percent,
+            "payment_system":merchant.payment_system_percent,
+            "merchant":m_p
         }
         orders[i].cashback_percent = obj
     }

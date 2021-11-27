@@ -1,10 +1,10 @@
 const createMerchant = require('./createMerchant')
 const addProductToMerchant = require('./addProductToMerchant')
-const createCashback = require('./createCashback')
+const addCashbackToCustomer = require('./addCashbackToCustomer')
 
 
 module.exports = {
     createMerchant:createMerchant,
     addProductToMerchant:addProductToMerchant,
-    createCashback:createCashback
+    addCashbackToCustomer:addCashbackToCustomer
 }
