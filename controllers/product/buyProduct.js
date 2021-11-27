@@ -22,7 +22,7 @@ module.exports = async function buyProduct(obj) {
     const order = obj
     order.sku = product.sku
     order.title = product.title
-    order.cashback = parseFloat(obj.cashback_percent*0.01*obj.price).toFixed(2);
+    order.cashback = parseFloat((obj.cashback_percent*0.01*obj.price).toFixed(2));
 
     const cashback = await CashbackModel.findOne({customer_id:obj.c_id})
     const merchant = await MerchantModel.findOne({_id:obj.m_id})
@@ -62,7 +62,7 @@ module.exports = async function buyProduct(obj) {
         }
         cashback.total_orders_num +=1 
         cashback.total_orders_cost += obj.price
-        cashback.total_cashback += obj.cashback_percent*0.01*obj.price
+        cashback.total_cashback += parseFloat((obj.cashback_percent*0.01*obj.price).toFixed(2))
         await cashback.save()
     }else{
         let cashback_percent = obj.cashback_percent
@@ -92,7 +92,7 @@ module.exports = async function buyProduct(obj) {
             cashback_type:merchant.cashback_type?merchant.cashback_type:null,
             total_orders_num:1,
             total_orders_cost: obj.price,
-            total_cashback: obj.cashback_percent*0.01*obj.price,
+            total_cashback: parseFloat((obj.cashback_percent*0.01*obj.price).toFixed(2)),
             cashback_percent:cashback_percent,
             cashback_level:cashback_level
         })
