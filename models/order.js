@@ -35,9 +35,10 @@ const OrderSchema = new mongoose.Schema(
     },
     cashback_percent:{
       type:Object
+    },
+    card_type:{
+      type: String,
     }
-
-    
   },
   {
     timestamps: true,

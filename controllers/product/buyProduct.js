@@ -7,6 +7,7 @@ module.exports = async function buyProduct(obj) {
     const order = obj
     order.sku = product.sku
     order.title = product.title
+    order.cashback = obj.cashback_percent*0.01*obj.price
 
     return OrderModel.create(order).then(doc => {
         return doc;

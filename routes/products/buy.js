@@ -5,7 +5,7 @@ const CustomerModel = require("../../models/customer");
 const {buyProduct} = require('../../controllers/product')
 
 router.post("/", async(req, res) => {
-    const {m_id,c_id,p_id,price,cashback_percent} = req.body
+    const {m_id,c_id,p_id,price,cashback_percent,card_type} = req.body
 
     //simple validation
     if(cashback_percent<0){
@@ -29,7 +29,7 @@ router.post("/", async(req, res) => {
         })
     }
     //changing cashback to product
-    let result = await buyProduct({merchant_id:m_id,product_id:p_id,customer_id:customer._id,price:price,cashback_percent:cashback_percent})
+    let result = await buyProduct({merchant_id:m_id,product_id:p_id,customer_id:customer._id,price:price,cashback_percent:cashback_percent,card_type:card_type})
     res.status(200).send(result)
 });
 
