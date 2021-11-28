@@ -11,15 +11,18 @@ const OrderSchema = new mongoose.Schema(
     },
     merchant_id:{
       type: mongoose.Schema.Types.ObjectId,
-      ref: "merchant"
+      ref: "merchant",
+      required: true
     },
     product_id:{
       type: mongoose.Schema.Types.ObjectId,
-      ref: "product"
+      ref: "product",
+      required: true
     },
     customer_id:{
       type: mongoose.Schema.Types.ObjectId,
-      ref: "customer"
+      ref: "customer",
+      required: true
     },
     sku:{
       type: String,

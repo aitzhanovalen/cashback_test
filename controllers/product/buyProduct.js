@@ -2,6 +2,7 @@ const ProductModel = require("../../models/product");
 const OrderModel = require("../../models/order")
 const MerchantModel = require("../../models/merchant")
 const CashbackModel = require("../../models/cashback");
+const CustomerModel = require("../../models/customer");
 const {addCashbackToCustomer} = require("../../controllers/merchant")
 const mongoose =require('mongoose')
 
@@ -19,13 +20,19 @@ module.exports = async function buyProduct(obj) {
 
     //preparing for creating order
     const product = await ProductModel.findOne({_id:mongoose.Types.ObjectId(obj.p_id)})
+    const cashback = await CashbackModel.findOne({customer_id:obj.c_id})
+    const merchant = await MerchantModel.findOne({_id:obj.m_id})
+    const customer = await CustomerModel.findOne({id:obj.c_id})
+
     const order = obj
     order.sku = product.sku
     order.title = product.title
+    order.merchant_id = merchant._id
+    order.product_id = obj.p_id
+    order.customer_id = customer._id
     order.cashback = parseFloat((obj.cashback_percent*0.01*obj.price).toFixed(2));
 
-    const cashback = await CashbackModel.findOne({customer_id:obj.c_id})
-    const merchant = await MerchantModel.findOne({_id:obj.m_id})
+
     //check if cashback exists 
     if(cashback){
         console.log(cashback,30)
